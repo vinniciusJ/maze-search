@@ -27,7 +27,7 @@ projeto-2
 ├── schemas/
 │   └── __init__.py
 │   └── graph.py
-├── utils/
+├── utils/ 
 │   └── __init__.py
 │   └── graph.py
 │   └── view.py
