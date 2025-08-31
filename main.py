@@ -4,7 +4,7 @@ import sys
 from utils.graph import parse_graph_from_file
 from algorithms.a_search import a_search_start
 from algorithms.greedy_search import greedy_search_start
-from types.graph import MazeSearchResult, Graph, HeapMap
+from schemas.graph import MazeSearchResult, Graph, HeapMap
 
 
 def parse_args() -> argparse.Namespace:

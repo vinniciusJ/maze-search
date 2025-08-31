@@ -4,7 +4,7 @@ from typing import Optional
 
 from utils.view import format_frontier
 from utils.graph import reconstruct_path
-from types.graph import MazeSearchResult, HeapMap, Graph
+from schemas.graph import MazeSearchResult, HeapMap, Graph
 
 
 def greedy_search_start(

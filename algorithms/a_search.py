@@ -4,7 +4,7 @@ from typing import Optional
 
 from utils.view import format_frontier
 from utils.graph import reconstruct_path
-from types.graph import Graph, MazeSearchResult, HeapMap
+from schemas.graph import Graph, MazeSearchResult, HeapMap
 
 
 def a_search_start(
