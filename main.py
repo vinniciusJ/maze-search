@@ -4,6 +4,7 @@ import sys
 from utils.graph import parse_graph_from_file
 from algorithms.a_search import a_search_start
 from algorithms.greedy_search import greedy_search_start
+from algorithms.dfs import dfs_start
 from schemas.graph import MazeSearchResult, Graph, HeapMap
 
 
@@ -28,7 +29,7 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument(
         "--alg",
-        choices=["greedy", "a_star"],
+        choices=["dfs", "a_star"],
         help="Algoritmo a executar.",
     )
 
@@ -53,13 +54,13 @@ def choose_algorithm() -> str:
         str: Algoritmo escolhido ('greedy' ou 'a_star').
     """
     print("Escolha o algoritmo:")
-    print("1) Greedy (Busca Gulosa)")
+    print("1) DFS (Busca em profundidade)")
     print("2) A*")
 
     choice = input().strip()
 
     if choice == "1":
-        return "greedy"
+        return "dfs"
     elif choice == "2":
         return "a_star"
     else:
@@ -80,7 +81,7 @@ def ask_wire_limit() -> int | None:
     print("Deseja adicionar um limite de fio? (s/n)")
 
     resp = input().strip().lower()
-    
+
     if resp == "s":
         try:
             print("Qual o comprimento do fio?")
@@ -119,12 +120,15 @@ def execute_algorithm(
             - distance (float): Custo do caminho ou float('inf') se não houver.
             - expanded (int): Número de nós expandidos durante a busca.
     """
-    if alg == "greedy":
+    if alg == "dfs":
+        return dfs_start(start, goal, graph, wire_limit=wire_limit)
+    elif alg == "greedy":
         return greedy_search_start(start, goal, graph, h_map, wire_limit=wire_limit)
     elif alg == "a_star":
         return a_search_start(start, goal, graph, h_map, wire_limit=wire_limit)
     else:
         print("Algoritmo não reconhecido.")
+        
         sys.exit(1)
 
 
@@ -148,7 +152,7 @@ def print_result(result: MazeSearchResult):
     else:
         print(f"Distância: {dist}")
         print("Caminho: " + " – ".join(path))
-        
+
     print(f"Medida de desempenho: {expanded}\n")
 
 
